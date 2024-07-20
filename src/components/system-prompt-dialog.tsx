@@ -25,7 +25,7 @@ export default function SystemPromptDialog() {
             </DialogDescription>
           </DialogHeader>
           <Textarea
-            className="w-full"
+            className="w-full h-64"
             placeholder="Type your system prompt here..."
           />
         </DialogContent>
