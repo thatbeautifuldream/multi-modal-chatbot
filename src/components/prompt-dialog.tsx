@@ -12,11 +12,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { usePromptStore } from "@/stores/use-prompt";
 import { CogIcon } from "lucide-react";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 export default function PromptDialog() {
   const [open, setOpen] = useState(false);
   const prompt = usePromptStore((state) => state.prompt);
   const updatePrompt = usePromptStore((state) => state.updatePrompt);
+
   return (
     <div className="fixed right-0 p-4 top-0 md:bottom-0 md:top-auto">
       <Dialog open={open} onOpenChange={setOpen}>
@@ -34,13 +36,18 @@ export default function PromptDialog() {
           <Textarea
             className="w-full h-64"
             value={prompt}
-            onChange={(e) => updatePrompt(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                setOpen(!open);
-              }
+            onChange={(event) => {
+              updatePrompt(event.target.value);
             }}
           />
+          <Button
+            type="submit"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            Update Prompt
+          </Button>
         </DialogContent>
       </Dialog>
     </div>
