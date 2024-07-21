@@ -18,7 +18,7 @@ export default function PromptDialog() {
   const prompt = usePromptStore((state) => state.prompt);
   const updatePrompt = usePromptStore((state) => state.updatePrompt);
   return (
-    <div className="fixed bottom-0 right-0 p-4">
+    <div className="fixed right-0 p-4 top-0 md:bottom-0 md:top-auto">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
           <CogIcon className="w-6 h-6" />
