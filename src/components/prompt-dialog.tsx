@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogContent,
@@ -7,12 +9,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { usePromptStore } from "@/stores/use-prompt";
 import { CogIcon } from "lucide-react";
+import { useState } from "react";
 
-export default function SystemPromptDialog() {
+export default function PromptDialog() {
+  const [open, setOpen] = useState(false);
+  const prompt = usePromptStore((state) => state.prompt);
+  const updatePrompt = usePromptStore((state) => state.updatePrompt);
   return (
     <div className="fixed bottom-0 right-0 p-4">
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
           <CogIcon className="w-6 h-6" />
         </DialogTrigger>
@@ -26,7 +33,13 @@ export default function SystemPromptDialog() {
           </DialogHeader>
           <Textarea
             className="w-full h-64"
-            placeholder="Type your system prompt here..."
+            value={prompt}
+            onChange={(e) => updatePrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setOpen(!open);
+              }
+            }}
           />
         </DialogContent>
       </Dialog>

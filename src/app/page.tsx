@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import SystemPromptDialog from "@/components/system-prompt-dialog";
+import PromptDialog from "@/components/prompt-dialog";
 import { useChat } from "ai/react";
 import { useRef, useState } from "react";
 
@@ -13,10 +13,11 @@ export default function Chat() {
 
   return (
     <>
-      <SystemPromptDialog />
+      <PromptDialog />
       <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
         {messages.map((m) => (
           <div key={m.id} className="whitespace-pre-wrap">
+            {m.role === "system" && <div>System: {m.content}</div>}
             {m.role === "user" ? "User: " : "AI: "}
             {m.content}
             <div>
