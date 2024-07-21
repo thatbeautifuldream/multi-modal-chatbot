@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { usePromptStore } from "@/stores/use-prompt";
+import { usePromptStore } from "@/stores";
 import { CogIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";

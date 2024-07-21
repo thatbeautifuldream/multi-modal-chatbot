@@ -1,1 +1,1 @@
-export { useSystemPromptStore } from "@/stores/use-system-prompt";
+export { usePromptStore } from "@/stores/use-prompt";
