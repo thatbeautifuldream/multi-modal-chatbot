@@ -13,7 +13,6 @@ export default function Chat() {
 
   return (
     <>
-      <PromptDialog />
       <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
         {messages.map((m) => (
           <div key={m.id} className="whitespace-pre-wrap">
@@ -38,7 +37,7 @@ export default function Chat() {
         ))}
 
         <form
-          className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl space-y-2"
+          className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl space-y-2 bg-white"
           onSubmit={(event) => {
             handleSubmit(event, {
               experimental_attachments: files,
@@ -63,11 +62,12 @@ export default function Chat() {
             ref={fileInputRef}
           />
           <input
-            className="w-full p-2"
+            className="w-full p-2 bg-white"
             value={input}
             placeholder="Say something..."
             onChange={handleInputChange}
           />
+          <PromptDialog />
         </form>
       </div>
     </>

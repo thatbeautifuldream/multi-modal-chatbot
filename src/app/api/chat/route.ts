@@ -9,7 +9,14 @@ export async function POST(req: Request) {
 
   const result = await streamText({
     model: openai("gpt-4o"),
-    messages: convertToCoreMessages(messages),
+    messages: [
+      {
+        role: "system",
+        content:
+          "You're a skilled AI bot that has knowledge of the UI UX Design and can help with design queries.",
+      },
+      ...convertToCoreMessages(messages),
+    ],
   });
 
   return result.toAIStreamResponse();
